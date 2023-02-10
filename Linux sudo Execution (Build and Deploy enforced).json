@@ -1,44 +1,52 @@
 {
     "policies": [
         {
-            "id": "bc5022d3-9bd9-4723-99f3-7512c9f239fa",
-            "name": "Linux sudo Execution (Enforced)",
+            "id": "311a8810-2fdc-4822-9134-8970736913bd",
+            "name": "Linux sudo Execution (Build and Deployment enforced)",
             "description": "Detects when the 'sudo' or 'visudo' binary is executed, which can be used to assume root privileges.",
             "rationale": "Processes should not require escalated privileges within containers.",
             "remediation": "Consider using a base image that doesn't have a shell such as SCRATCH or gcr.io/distroless. If not, modify your Dockerfile to use the exec form of CMD/ENTRYPOINT ([\"using braces\"]) instead of the shell form (no braces)",
-            "disabled": false,
+            "disabled": true,
             "categories": [
                 "System Modification",
                 "Privileges"
             ],
             "lifecycleStages": [
-                "RUNTIME"
+                "BUILD",
+                "DEPLOY"
             ],
-            "eventSource": "DEPLOYMENT_EVENT",
+            "eventSource": "NOT_APPLICABLE",
             "exclusions": [],
             "scope": [],
             "severity": "HIGH_SEVERITY",
             "enforcementActions": [
-                "KILL_POD_ENFORCEMENT",
-                "FAIL_KUBE_REQUEST_ENFORCEMENT"
+                "FAIL_BUILD_ENFORCEMENT",
+                "SCALE_TO_ZERO_ENFORCEMENT",
+                "UNSATISFIABLE_NODE_CONSTRAINT_ENFORCEMENT"
             ],
             "notifiers": [],
-            "lastUpdated": "2023-02-08T22:20:24.793261839Z",
+            "lastUpdated": "2023-02-08T22:34:42.332858043Z",
             "SORTName": "",
             "SORTLifecycleStage": "",
             "SORTEnforcement": false,
             "policyVersion": "1.1",
             "policySections": [
                 {
-                    "sectionName": "",
+                    "sectionName": "Policy Section 1",
                     "policyGroups": [
                         {
-                            "fieldName": "Process Name",
+                            "fieldName": "Dockerfile Line",
                             "booleanOperator": "OR",
                             "negate": false,
                             "values": [
                                 {
-                                    "value": "sudo|visudo"
+                                    "value": "CMD=sudo"
+                                },
+                                {
+                                    "value": "ENTRYPOINT=sudo"
+                                },
+                                {
+                                    "value": "RUN=sudo"
                                 }
                             ]
                         }
