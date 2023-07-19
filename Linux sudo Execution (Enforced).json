@@ -5,7 +5,7 @@
       "description": "Detects when the 'sudo' or 'visudo' binary is executed, which can be used to assume root privileges.",
       "rationale": "Processes should not require escalated privileges within containers.",
       "remediation": "Consider using a base image that doesn't have a shell such as SCRATCH or gcr.io/distroless. If not, modify your Dockerfile to use the exec form of CMD/ENTRYPOINT ([\"using braces\"]) instead of the shell form (no braces)",
-      "disabled": false,
+      "disabled": true,
       "categories": ["System Modification", "Privileges"],
       "lifecycleStages": ["RUNTIME"],
       "eventSource": "DEPLOYMENT_EVENT",
