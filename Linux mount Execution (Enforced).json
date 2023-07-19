@@ -31,7 +31,7 @@
               "negate": false,
               "values": [
                 {
-                  "value": "mount|mount.nfs|mount.nfs4|mount.cifs"
+                  "value": "mount|mount.nfs|mount.cifs"
                 }
               ]
             }
