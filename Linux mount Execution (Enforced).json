@@ -5,7 +5,7 @@
       "description": "Detects when the 'mount' command is executed within a container, which can be used to mount remote volumes.",
       "rationale": "Processes should not be mounting volumes within containers.  Use PVs/PVCs instead.",
       "remediation": "Consider using a base image that doesn't have a shell such as SCRATCH or gcr.io/distroless. If not, modify your Dockerfile to use the exec form of CMD/ENTRYPOINT ([\\\"using braces\\\"]) instead of the shell form (no braces)",
-      "disabled": true,
+      "disabled": false,
       "categories": ["Security Best Practices"],
       "lifecycleStages": ["RUNTIME"],
       "eventSource": "DEPLOYMENT_EVENT",
