@@ -2,7 +2,7 @@
   "policies": [
     {
       "name": "Linux mount command Execution (Enforced)",
-      "description": "Detects when the 'mount' command is executed in a container, which can be used to mount remote volumes.",
+      "description": "Detects when the 'mount' command is executed within a container, which can be used to mount remote volumes.",
       "rationale": "Processes should not be mounting volumes within containers.  Use PVs/PVCs instead.",
       "remediation": "Consider using a base image that doesn't have a shell such as SCRATCH or gcr.io/distroless. If not, modify your Dockerfile to use the exec form of CMD/ENTRYPOINT ([\\\"using braces\\\"]) instead of the shell form (no braces)",
       "disabled": true,
