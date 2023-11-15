@@ -5,7 +5,7 @@
       "description": "Detects when 'vi' is executed in a pod, which can be used to edit text files.",
       "rationale": "Containers are immutable, you should not be running vi to edit files.",
       "remediation": "Consider using a base image that doesn't have a shell such as SCRATCH or gcr.io/distroless. If not, modify your Dockerfile to use the exec form of CMD/ENTRYPOINT ([\\\"using braces\\\"]) instead of the shell form (no braces)",
-      "disabled": false,
+      "disabled": true,
       "categories": ["Security Best Practices"],
       "lifecycleStages": ["RUNTIME"],
       "eventSource": "DEPLOYMENT_EVENT",
